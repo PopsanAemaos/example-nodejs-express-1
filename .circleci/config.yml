@@ -9,6 +9,10 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:8.11.1-stretch
     working_directory: ~/repo
+    branch:
+      only:
+        - master
+        - dev
     steps:
       - checkout
       - restore_cache:
