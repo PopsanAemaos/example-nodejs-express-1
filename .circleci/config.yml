@@ -27,18 +27,18 @@ jobs:
       - run:
           name: "Build docker image and push to docker hub"
           command: |
-          cp Dockerfile.production Dockerfile
-          if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            echo "This is master ${CIRCLE_BRANCH}"
-            docker build -t zel2o99/example-nodejs-circle:latest .
-            docker build -t zel2o99/example-nodejs-circle:${CIRCLE_SHA1} .
-            docker push zel2o99/example-nodejs-circle:latest
-            docker push zel2o99/example-nodejs-circle:${CIRCLE_SHA1}
-          elif [ "${CIRCLE_BRANCH}" == "dev" ]; then
-            echo "This is dev ${CIRCLE_BRANCH}"
-            docker build -t zel2o99/example-nodejs-circle-dev:latest .
-            docker push zel2o99/example-nodejs-circle-dev:latest
-          else
-            echo "This is ${CIRCLE_BRANCH}"
-          fi
+            cp Dockerfile.production Dockerfile
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              echo "This is master ${CIRCLE_BRANCH}"
+              docker build -t zel2o99/example-nodejs-circle:latest .
+              docker build -t zel2o99/example-nodejs-circle:${CIRCLE_SHA1} .
+              docker push zel2o99/example-nodejs-circle:latest
+              docker push zel2o99/example-nodejs-circle:${CIRCLE_SHA1}
+            elif [ "${CIRCLE_BRANCH}" == "dev" ]; then
+              echo "This is dev ${CIRCLE_BRANCH}"
+              docker build -t zel2o99/example-nodejs-circle-dev:latest .
+              docker push zel2o99/example-nodejs-circle-dev:latest
+            else
+              echo "This is ${CIRCLE_BRANCH}"
+            fi
     - run: echo Done
