@@ -26,18 +26,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
-      - run:
-          name: "Call to rancher to deploy"
-          command: |
-            docker run --rm -it \
-            -e CATTLE_ACCESS_KEY="$CATTLE_ACCESS_KEY" \
-            -e CATTLE_SECRET_KEY="$CATTLE_SECRET_KEY" \
-            -e CATTLE_URL="$CATTLE_URL" \
-            etlweather/gaucho upgrade 1s9 \
-            --imageUuid 'docker:zel2o99/example-nodejs-circle:latest' \
-            --batch_size 3 --start_first \
-            --auto_complete --timeout 600 \
-            /
   build_docker:
     docker:
       - image: circleci/node:8.11.1-stretch
