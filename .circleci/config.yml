@@ -83,11 +83,11 @@ workflows:
     jobs:
       - build
       - build_docker:
-          require:
+          requires:
             - build
       - deploy:
-        type: approval
-          require:
+          type: approval
+          requires:
             - build_docker
     
 
